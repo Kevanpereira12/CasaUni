@@ -36,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late int _pageIndex = 0;
   final List<Widget> _pages = [
-    const HomePage(),
+    HomePage(),
     const FavHome(),
   ];
 
@@ -45,23 +45,44 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Row(
+        title: Row(
           children: [
             Expanded(
               child: TextField(
+                style: const TextStyle(
+                    color:
+                        Colors.white), // Estilo del texto dentro del TextField
                 decoration: InputDecoration(
                   hintText: 'Buscar',
-                  border: InputBorder.none,
+                  hintStyle: TextStyle(
+                      color: Colors.white.withOpacity(
+                          0.5)), // Estilo del texto de sugerencia (hint)
+                  border: InputBorder.none, // Sin borde
                 ),
               ),
             ),
-            Icon(Icons.search),
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                // Acción al presionar el botón de búsqueda
+              },
+            ),
           ],
         ),
         centerTitle: true,
-        leading: const Icon(Icons.account_circle_rounded),
-        actions: const [
-          Icon(Icons.menu),
+        leading: IconButton(
+          icon: const Icon(Icons.account_circle_rounded),
+          onPressed: () {
+            // Acción al presionar el botón del perfil
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              // Acción al presionar el botón del menú
+            },
+          ),
         ],
       ),
       body: _pages[_pageIndex],
